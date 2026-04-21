@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI winText;
 
+    public Animator anim;
+
     [SerializeField] private float speed = 10f;
 
     private int count;
@@ -39,8 +41,12 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
+        float currentSpeed = playerRb.linearVelocity.magnitude;
 
         playerRb.AddForce(movement * speed);
+        anim.SetFloat("Speed", currentSpeed);
+
+
     }
 
     private void OnTriggerEnter(Collider other)
