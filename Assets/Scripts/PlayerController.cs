@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     public Animator anim;
 
-    [SerializeField] private float speed = 10f;
+    [SerializeField] private float speed = 100f;
 
     private int count;
 
