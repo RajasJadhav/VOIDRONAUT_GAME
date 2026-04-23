@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI winText;
 
+    public GameObject buttons;
+
     public Animator anim;
 
     [SerializeField] private float speed = 100f;
@@ -65,6 +67,7 @@ public class PlayerController : MonoBehaviour
         if (count >= 12)
         {
             winText.gameObject.SetActive(true);
+            buttons.gameObject.SetActive(true);
             Destroy(GameObject.FindGameObjectWithTag("Enemy"));
         }
 
@@ -77,6 +80,7 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
 
             winText.gameObject.SetActive(true);
+            buttons.gameObject .SetActive(true);
             winText.GetComponent<TextMeshProUGUI>().text = "You Lose!!!";
         }
     }
