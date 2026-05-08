@@ -13,10 +13,16 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI winText;
 
     public GameObject buttons;
+    public AudioSource audioSource;
+    public AudioClip winAudio;
+    public AudioClip loseAudio;
+    public AudioClip pickupAudio;
 
     public Animator anim;
 
     [SerializeField] private float speed = 100f;
+
+    public FootstepController footstepController;
 
     private int count;
 
@@ -24,6 +30,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
+        footstepController = GetComponent<FootstepController>();
         count = 0;
     }
 
@@ -48,6 +55,11 @@ public class PlayerController : MonoBehaviour
         playerRb.AddForce(movement * speed);
         anim.SetFloat("Speed", currentSpeed);
 
+        if (movementY != 0 && currentSpeed > 0.1f)
+        {
+            footstepController.PlayFootStep();
+        }
+
 
     }
 
@@ -56,6 +68,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("PickUp"))
         {
             other.gameObject.SetActive(false);
+            audioSource.PlayOneShot(pickupAudio);
             count++;
         }
     }
@@ -68,6 +81,7 @@ public class PlayerController : MonoBehaviour
         {
             winText.gameObject.SetActive(true);
             buttons.gameObject.SetActive(true);
+            audioSource.PlayOneShot(winAudio);
             Destroy(GameObject.FindGameObjectWithTag("Enemy"));
         }
 
@@ -81,6 +95,7 @@ public class PlayerController : MonoBehaviour
 
             winText.gameObject.SetActive(true);
             buttons.gameObject .SetActive(true);
+            audioSource.PlayOneShot(loseAudio);
             winText.GetComponent<TextMeshProUGUI>().text = "You Lose!!!";
         }
     }
