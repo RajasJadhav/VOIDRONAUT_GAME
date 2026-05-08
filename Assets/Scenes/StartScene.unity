@@ -1696,7 +1696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 371db8f1fdbf1f547861e6b7afd6f9fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FloatObject
-  floatSpeed: 1
+  floatSpeed: 2
   floatHeight: 2
   rotationSpeed: 50
 --- !u!1 &1344577912
